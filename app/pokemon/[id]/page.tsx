@@ -45,7 +45,7 @@ const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
   }, [id]);
 
   if (!pokemon) {
-    return <p>No pokemon data</p>;
+    return <Loader />;
   }
 
   const imgURL = getImageURL(pokemon?.id);
@@ -65,8 +65,9 @@ const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
         {isLoading && <Loader />}
         <div className="detail-card min-h-96 mt-0">
           <BackButton onClick={() => router.push("/")} />
-
-          <PokemonCard pokemon={pokemon} />
+          <div className="pointer-events-none	">
+            <PokemonCard pokemon={pokemon} />
+          </div>
         </div>
         <div className="details">
           <Image

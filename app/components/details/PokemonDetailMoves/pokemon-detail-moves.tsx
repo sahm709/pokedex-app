@@ -35,6 +35,7 @@ const PokemonMoves = ({ pokemon }: PokemonMovesProps) => {
         level: move.level,
       }));
       setMoveDetails(moveDetails);
+      setIsLoading(false);
     };
 
     fetchMoveDetails();
@@ -48,6 +49,7 @@ const PokemonMoves = ({ pokemon }: PokemonMovesProps) => {
   return (
     <div className="tab tab-moves">
       <div className="grid grid-cols-1 gap-y-2">
+        {isLoading && <Loader />}
         {moveDetails.map(({ name, type, level }) => {
           const className = "type-" + type;
           const typeIconUrl = `/types/${type}.png`; // Assuming the icons are stored in public/types directory
